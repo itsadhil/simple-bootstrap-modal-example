@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Dashboard with Full-Page Modals</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+    
+    <style>
+        body {
+            background-color: #f8f9fa;
+        }
+        .navbar {
+            background-color: #343a40 !important;
+        }
+        .navbar-brand, .navbar-nav .nav-link {
+            color: white !important;
+        }
+        .dashboard-cards {
+            margin-top: 20px;
+        }
+        .card {
+            border: none;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: 0.3s;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .card:hover {
+            transform: scale(1.05);
+        }
+        .icon {
+            font-size: 2rem;
+            margin-right: 10px;
+        }
+        
+        .full-page-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 1000;
+            justify-content: center;
+            align-items: center;
+        }
+        .modal-content-full {
+            background: white;
+            width: 80%;
+            height: 90%;
+            border-radius: 10px;
+            padding: 20px;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        .close-modal {
+            position: absolute;
+            top: 10px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <nav class="navbar navbar-expand-lg navbar-dark">
+        <div class="container-fluid">
+            <a class="navbar-brand" href="#">Dashboard</a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item"><a class="nav-link" href="#">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Analytics</a></li>
+                    <li class="nav-item"><a class="nav-link" href="#">Settings</a></li>
+                    <li class="nav-item"><a class="nav-link" href="homepage.html">Logout</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <h2 class="mt-4">Welcome to Your Dashboard</h2>
+        <div class="row dashboard-cards">
+            <div class="col-md-3 mb-3">
+                <div class="card p-3 bg-primary text-white" onclick="openModal('usersModal')">
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-people icon"></i>
+                        <div>
+                            <h5>Total Users</h5>
+                            <h3>1,245</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card p-3 bg-success text-white" onclick="openModal('revenueModal')">
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-currency-dollar icon"></i>
+                        <div>
+                            <h5>Revenue</h5>
+                            <h3>$12,340</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card p-3 bg-warning text-dark" onclick="openModal('ordersModal')">
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-cart icon"></i>
+                        <div>
+                            <h5>Orders</h5>
+                            <h3>523</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card p-3 bg-danger text-white" onclick="openModal('growthModal')">
+                    <div class="d-flex align-items-center">
+                        <i class="bi bi-graph-up icon"></i>
+                        <div>
+                            <h5>Growth</h5>
+                            <h3>8.5%</h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="usersModal" class="full-page-modal">
+        <div class="modal-content-full">
+            <span class="close-modal" onclick="closeModal('usersModal')">&times;</span>
+            <img src="custmoers.jpg" alt="Users Overview" class="img-fluid rounded mb-3">
+            <h2>Total Users</h2>
+            <p>There are currently <strong>1,245 active users</strong> on the platform.</p>
+            <button class="btn btn-primary">View Details</button>
+        </div>
+    </div>
+    
+    <div id="revenueModal" class="full-page-modal">
+        <div class="modal-content-full">
+            <span class="close-modal" onclick="closeModal('revenueModal')">&times;</span>
+            <img src="revenue.png" alt="Revenue" class="img-fluid rounded mb-3">
+            <h2>Revenue Details</h2>
+            <p>Total revenue for this month is <strong>$12,340</strong>.</p>
+            <button class="btn btn-success">Download Report</button>
+        </div>
+    </div>
+    
+    <div id="ordersModal" class="full-page-modal">
+        <div class="modal-content-full">
+            <span class="close-modal" onclick="closeModal('ordersModal')">&times;</span>
+            <img src="orders.jpg" alt="Orders Overview" class="img-fluid rounded mb-3">
+            <h2>Orders Overview</h2>
+            <p>There have been <strong>523 orders</strong> placed this month.</p>
+            <button class="btn btn-warning">Manage Orders</button>
+        </div>
+    </div>
+    
+    <div id="growthModal" class="full-page-modal">
+        <div class="modal-content-full">
+            <span class="close-modal" onclick="closeModal('growthModal')">&times;</span>
+            <img src="growth.png" alt="Growth Stats" class="img-fluid rounded mb-3">
+            <h2>Growth Statistics</h2>
+            <p>The platform's growth rate is currently <strong>8.5%</strong>.</p>
+            <button class="btn btn-danger">Analyze Growth</button>
+        </div>
+    </div>
+    
+    
+    <script>
+        function openModal(modalId) {
+            document.getElementById(modalId).style.display = "flex";
+        }
+
+        function closeModal(modalId) {
+            document.getElementById(modalId).style.display = "none";
+        }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+
+</body>
+</html>
